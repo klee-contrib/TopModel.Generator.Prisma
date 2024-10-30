@@ -1,0 +1,31 @@
+////
+//// ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
+////
+
+model TypeUtilisateur {
+  code         TypeUtilisateurCode @map("TUT_CODE") @id
+  libelle      String              @map("TUT_LIBELLE")
+  Utilisateur  Utilisateur[]
+  utilisateurs Int                 @map("UTI_ID")
+}
+
+enum TypeUtilisateurCode {
+    ADMIN
+    CLIENT
+    GEST
+}
+model Utilisateur {
+  id                  Int                 @map("UTI_ID") @id @default(autoincrement())
+  nom                 String              @map("UTI_NOM")
+  prenom              String              @map("UTI_PRENOM")
+  email               String              @map("UTI_EMAIL")
+  dateNaissance       DateTime            @map("UTI_DATE_NAISSANCE")
+  adresse             String              @map("UTI_ADRESSE")
+  actif               Boolean             @map("UTI_ACTIF")
+  profil              Profil              @relation(fields: [profilId], references: [id])
+  profilId            Int                 @map("PRO_ID")
+  typeUtilisateur     TypeUtilisateur     @relation(fields: [typeUtilisateurCode], references: [code])
+  typeUtilisateurCode TypeUtilisateurCode @map("TUT_CODE")
+  dateCreation        DateTime            @map("UTI_DATE_CREATION")
+  dateModification    DateTime            @map("UTI_DATE_MODIFICATION")
+}

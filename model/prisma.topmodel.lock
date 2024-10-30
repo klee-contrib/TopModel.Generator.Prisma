@@ -1,0 +1,11 @@
+﻿#
+# ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
+#
+
+version: 2.1.2
+custom:
+  ../../../TopModel.Generator.Prisma: 91e765fd39a376a4bf8b4443d22976a5
+  ../../TopModel.Generator.Prisma: 79ad2cf0ba1045b4dfaa85066994e8e0
+generatedFiles:
+  - ../prisma/prisma/schema/securite.profil.prisma
+  - ../prisma/prisma/schema/securite.utilisateur.prisma
