@@ -1,0 +1,39 @@
+////
+//// ATTENTION CE FICHIER EST GENERE AUTOMATIQUEMENT !
+////
+
+model TypeDroit {
+  code    TypeDroitCode @map("TDR_CODE") @id
+  libelle String        @map("TDR_LIBELLE")
+  Droit   Droit[]
+  droits  String        @map("DRO_CODE")
+}
+
+enum TypeDroitCode {
+    ADMIN
+    READ
+    WRITE
+}
+model Droit {
+  code          DroitCode     @map("DRO_CODE") @id
+  libelle       String        @map("DRO_LIBELLE")
+  typeDroit     TypeDroit     @relation(fields: [typeDroitCode], references: [code])
+  typeDroitCode TypeDroitCode @map("TDR_CODE")
+  profils       Int           @map("PRO_ID")
+}
+
+enum DroitCode {
+    CREATE
+    DELETE
+    READ
+    UPDATE
+}
+model Profil {
+  id               Int           @map("PRO_ID") @id @default(autoincrement())
+  libelle          String        @map("PRO_LIBELLE")
+  droits           String        @map("DRO_CODE")
+  dateCreation     DateTime      @map("PRO_DATE_CREATION")
+  dateModification DateTime      @map("PRO_DATE_MODIFICATION")
+  Utilisateur      Utilisateur[]
+  utilisateurs     Int           @map("UTI_ID")
+}

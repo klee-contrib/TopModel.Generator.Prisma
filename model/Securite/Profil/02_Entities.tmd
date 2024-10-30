@@ -1,0 +1,42 @@
+---
+module: Securite.Profil
+tags:
+  - back
+uses:
+  - meta/decorators
+  - Securite/Profil/01_References
+
+---
+class:
+  name: Profil
+  trigram: PRO
+  label: Profil
+  comment: Profil des utilisateurs
+  decorators:
+    - EntityListeners
+
+  properties:
+    - name: Id
+      label: Id technique du profil
+      primaryKey: true
+      domain: DO_ID
+      comment: Id technique
+
+    - name: Libelle
+      label: Libellé du profil
+      domain: DO_LIBELLE
+      required: true
+      comment: Libellé du profil.
+
+    - association: Droit
+      label: Droits
+      comment: Liste des droits du profil
+      type: manyToMany
+
+  mappers:
+    to:
+      - class: Profil
+        mappings:
+          Id: false
+          DateCreation: false
+          DateModification: false
